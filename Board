@@ -1,0 +1,51 @@
+...
+public:
+    bool checkWon(vector<vector<int> > board) {
+        // write code here
+ 
+        int rows=board.size();//是行数也是列数
+     
+        int i,j,sum;
+        //检查每一行的和是否等于rows
+        for(int i=0;i<rows;i++)
+        {
+            sum=0;
+            for(int j=0;j<rows;j++)
+            {
+                sum+=board[i][j];
+            }
+            if(sum==rows)
+                return true;
+        }
+        //检查每一列的和是否等于rows
+        sum=0;
+        for(int i=0;i<rows;i++)
+        {
+            for(int j=0;j<rows;j++)
+            {
+                sum+=board[j][i];
+            }
+            if(sum==rows)
+            return true;
+}
+        //检查主对角线的和是否等于rows
+        sum=0;
+        for(int i=0;i<rows;i++)
+        {
+            sum+=board[i][i];
+        }
+        if(sum==rows)
+            return true;
+        //检查符对角线的和是否等于rows
+        sum=0;
+        for(int i=0;i<rows;i++)
+        {
+            sum+=board[i][rows-1-i];
+        }
+        if(sum==rows)
+            return true;
+        
+        return false;
+    }
+};
+...
