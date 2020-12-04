@@ -1,0 +1,21 @@
+...
+class LCA {
+public:
+    int getLCA(int a, int b) {
+        // write code here
+        //根据题意可得：该树是一颗满二叉树 
+        //满二叉树的子节点与父节点之间的关系为root=child/2
+        //每次都让大的那个数除2 直到两数相等
+        while(a!=b)
+        {
+            if(a>b)
+                a/=2;
+            else
+                b/=2;
+        }
+        return a;
+    }
+    }
+};
+
+...
