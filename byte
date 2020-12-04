@@ -1,0 +1,28 @@
+...
+#include<iostream>
+using namespace std;
+int main()
+{
+    //思路：(n>>i)&1 n的每一位都和1相& 如果连续为1，则进行计数，如果不连续为1，则进行清零，每次计数发生变化，就进行相比，保留大的那个
+   int n=0;
+   while(cin>>n)
+   {    int count=0;
+        int sum=0;
+        while(n)
+        {
+            if(n&1==1)
+            {
+                ++sum;//当前计数
+                count=sum>count?sum:count;//保存最大的那个数
+            }
+            else
+                sum=0;//如果sum=0,并且n=0了，此时也就不用进行count和sum的比大小，count值一定比sum大
+            n=n>>1;//右移一位
+        }
+        
+    cout<<count<<endl;
+   }
+    return 0;
+}
+
+...
