@@ -1,0 +1,70 @@
+...
+#include<iostream>
+#include<cmath>
+using namespace std;
+//思路：偶数num由两个素数组成，那么这两个素数一定是一个比num的一半小的，一个比num的一半大的数
+//从num/2开始向两边找到最近的两个素数，就是符合题目要求的
+bool isPrime(int n)
+{
+   int i=0;
+    for(int i=2;i<=sqrt(n);i++){
+        if(n%i==0)//如果能被除了1和它本身的数整除，就不是素数
+            return false;
+    }
+    return true;
+}
+int main()
+{
+    int num=0;
+    while(cin>>num)
+    {
+    int mid_num=num/2;
+    int a=mid_num;//左值
+    int b=0;//右值
+    while(a)
+    {
+    b=num-a;
+    if(!isPrime(a)||!isPrime(b))
+    break;
+    a--;//a发生变化，b也一定会发生变化
+    }
+  }
+    return 0;
+}
+/////////////////////////////
+//方法二
+#include<iostream>
+#include<cmath>
+using namespace std;
+//思路：偶数num由两个素数组成，那么这两个素数一定是一个比num的一半小的，一个比num的一半大的数
+//从num/2开始向两边找到最近的两个素数，就是符合题目要求的
+bool isPrime(int n)
+{
+   int i=0;
+    for(int i=2;i<=sqrt(n);i++){
+        if(n%i==0)//如果能被除了1和它本身的数整除，就不是素数
+            return false;
+    }
+    return true;
+}
+int main()
+{
+    int num=0;
+    while(cin>>num)
+    {
+    int mid_num=num/2;
+    //不能按下面这样写，因为不符合全部情况，6-> 3  3-3=0
+    //int left=mid_num-1,right=mid_num+1;
+    int left=mid_num,right=num-left;
+    while(!isPrime(left)||!isPrime(right))
+    {
+        left--;
+        right++;
+    }
+    cout<<left<<endl;
+    cout<<right<<endl;
+    }
+    return 0;
+}
+
+....
