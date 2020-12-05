@@ -1,0 +1,46 @@
+...
+class BinInsert {
+public:
+    int binInsert(int n, int m, int j, int i) {
+        // write code here
+        //注意：二进制从低位到高位并且以0开始，说明存入数组逆置数字之后没有什么改变
+        //思路：将两个数的二进制位取出来，分别存入两个vector中
+        //然后用第二个替换掉第一个相应的位置的数据，输出第一个vector
+        vector<int> v1,v2;
+        int result=0;//保存十进制结果
+        while(n)
+        {
+            v1.push_back(n&1);
+            n=n>>1;
+        }
+        while(m)
+        {
+            v2.push_back(m&1);
+            m=m>>1;
+        }
+        for(int a=0;a<v2.size();a++)
+        {//将m插入到n的第j到第i位
+            v1[j]=v2[a];
+            j++;
+        }
+        //将二进制数变为十进制
+        for(int b=0;b<v1.size();b++)
+        {
+            result+=v1[b]*pow(2,b);//pow函数用来计算x的y次幂
+        }
+        return result;
+};
+
+//////////////////////////////////////
+方法二：
+class BinInsert {
+public:
+    int binInsert(int n, int m, int j, int i) {
+        //根据测试用例可以看出：只要让m向左移动j位，就可以和n的j位对上
+        //然后两数相或（同时为0时为0）->其实就是将m插入到n
+        // m左移j位
+        m = m<<j;
+        return (n | m);
+    }
+};
+...
